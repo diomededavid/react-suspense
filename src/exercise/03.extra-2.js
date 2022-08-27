@@ -42,7 +42,7 @@ function createPokemonResource(pokemonName) {
 
   // shows busy indicator for a split second
   // 💯 this is what the extra credit improves
-  // delay = 200
+  delay = 200
   return createResource(fetchPokemon(pokemonName, delay))
 }
 
@@ -80,7 +80,10 @@ function App() {
         🐨 add inline styles here to set the opacity to 0.6 if the
         useTransition above is pending
       */}
-      <div className="pokemon-info" style={{opacity: isPending ? 0.6 : 1}}>
+      <div
+        className={`pokemon-info ${isPending ? 'pokemon-loading' : ''}`}
+        style={{opacity: isPending ? 0.6 : 1}}
+      >
         <React.Suspense fallback={<PokemonInfoFallback name={pokemonName} />}>
           {pokemonResource ? (
             <PokemonErrorBoundary
